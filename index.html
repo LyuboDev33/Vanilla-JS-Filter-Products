@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Menu</title>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Menu</h1>
+
+    <div class="food">
+
+      <div class="btnMenus">
+
+        <button class="All">All</button>
+        <button class="Breakfast">Breakfast</button>
+        <button class="Lunch">Lunch</button>
+        <button class="Dinner">Dinner</button>
+        <button class="Deserts">Deserts</button>
+
+
+      </div>
+
+      <div class="priceTags">
+
+        <!-- <div class="products">
+        <img class="prodImages" src="">
+        <h3></h3>
+        <p class="price"></p>
+        <p class="info"></p>
+      </div>
+       -->
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+  <script>
+
+    let products = [
+
+      // HERE STARTS BREAKFAST PART
+      {
+        image: "./images/breakfast/proteinPancakes.jpg",
+        title: "Протеинови Палачинки с плодове и кленов сироп",
+        price: "9.90",
+        description: "Палачинки с високо съдържание на протеин за спортисти и хора целящи влизането в по-добра форма.",
+        category: "breakfast"
+      },
+
+      {
+        image: "./images/breakfast/cereal.jpg",
+        title: "Зърнена закуска",
+        price: "5.90лв",
+        description: "Зърнена закуска в 4 различни вкуса - шоколадови топчета, корфлейс, блябля, блябля",
+        category: "breakfast"
+      },
+
+      {
+        image: "./images/breakfast/eggSandwich.jpg",
+        title: "Сандвич с яйца",
+        price: "8.90лв",
+        description: "Здравословен сандвич с пълнозърнест хляб, 2 яйца, домати и авокадо.",
+        category: "breakfast"
+      },
+
+      {
+        image: "./images/breakfast/pancakes Fruit.jpg",
+        title: "Палачинки с фастъчено масло",
+        price: "8.90лв",
+        description: "Палачинки с високо съдържание на протеин и здравословни мазнини.",
+        category: "breakfast"
+      },
+      // HERE ENDS BREAKFAST PART
+
+
+
+      // HERE STARTS LUNCH PART
+      {
+        image: "./images/lunch/pizza.jpg",
+        title: "Пица",
+        price: "10.90лв.",
+        description: "Пица в 3 различни вида - Пеперонин, Капричоза, Вегетарианска",
+        category: "lunch"
+      },
+
+      {
+        image: "./images/lunch/beefWithTomatoes.jpg",
+        title: "Свинско със зеленчуци",
+        price: "12.90лв.",
+        description: "Свинсо месо със зленчуци",
+        category: "lunch"
+      },
+
+      {
+        image: "./images/lunch/chickenWithRice.jpg",
+        title: "Пиле с ориз",
+        price: "9.90лв.",
+        description: "Пица в 3 различни вида - Пеперонин, Капричоза, Вегетарианска",
+        category: "lunch"
+      },
+      // HERE ENDS LUNCH PART
+
+
+
+
+      // HERE STARTS DINNER PART
+      {
+        image: "./images/dinner/fishVeggies.jpg",
+        title: "Риба със зеленчуци",
+        price: "14.90лв.",
+        description: "Сьомга поднесена със зеленчуци и картофи",
+        category: "dinner"
+      },
+
+      {
+        image: "./images/dinner/pasta.jpg",
+        title: "Паста",
+        price: "7.90лв.",
+        description: "Домашно приготвена паста с червен паста сос",
+        category: "dinner"
+      },
+
+      {
+        image: "./images/dinner/turkeyWithVeggies.jpg",
+        title: "Задушена пуйка",
+        price: "12.90лв.",
+        description: "Задушена пуйка със зеленчуци и/или картофи",
+        category: "dinner"
+      },
+      // HERE ENDS DINNER PART
+
+      // HERE STARTS DESERT PART 
+      {
+        image: "./images/Deserts/chockoMuss.jpg",
+        title: "Шоколадов мус",
+        price: "5.90лв",
+        description: "Съставки: какао, подсладител стевия, кокосови стърготини, яйца",
+        category: "deserts"
+      },
+
+      {
+        image: "./images/Deserts/chocolateCake.jpg",
+        title: "Шоколадова торта",
+        price: "5.90лв",
+        description: "Парче шоколадова торта",
+        category: "deserts"
+      },
+
+
+    ];
+
+
+
+
+    let priceTag = document.querySelector('.priceTags');
+
+    let all = document.querySelector('.All');
+    let breakfast = document.querySelector('.Breakfast');
+    let lunch = document.querySelector('.Lunch');
+    let dinner = document.querySelector('.Dinner');
+    let deserts = document.querySelector('.Deserts');
+
+    for (let i = 0; i < products.length; i++) {
+
+      priceTag.insertAdjacentHTML('beforeend', `
+        <div class="products">
+
+        <img class="prodImages" src="${products[i].image}">
+        <h3 class='headers'>${products[i].title}</h3>
+        <p class="price">${products[i].price}</p>
+        <p class="info">${products[i].description}</p>
+
+      </div>`);
+
+
+    }
+
+    // START OF FILTER FOR ALL
+    all.addEventListener('click', function () {
+
+      let selectedData = products.filter(value => {
+        return value.category === "breakfast" || "lunch" || "dinner" || "deserts";
+      });
+
+      priceTag.innerHTML = '';
+
+      selectedData.forEach(element => {
+
+        priceTag.insertAdjacentHTML('beforeend', `
+            <div class="products">
+            <img class="prodImages" src="${element.image}">
+            <h3 class='headers'>${element.title}</h3>
+            <p class="price">${element.price}</p>
+            <p class="info">${element.description}</p>
+          </div>`);
+
+      });
+
+    });
+    // END OF FILTER FOR ALL
+
+
+
+    // START OF FILTER FOR BREAKFAST
+    breakfast.addEventListener('click', function () {
+
+      let selectedData = products.filter(value => {
+        return value.category === "breakfast";
+      });
+
+      priceTag.innerHTML = '';
+
+      selectedData.forEach(element => {
+
+        priceTag.insertAdjacentHTML('beforeend', `
+        <div class="products">
+        <img class="prodImages" src="${element.image}">
+        <h3 class='headers'>${element.title}</h3>
+        <p class="price">${element.price}</p>
+        <p class="info">${element.description}</p>
+      </div>`);
+
+      });
+
+    })
+    // END OF FILTER FOR BREAKFAST
+
+
+    // START FILTER FOR LUNCH
+    lunch.addEventListener('click', function () {
+
+      let selectedData = products.filter(value => {
+        return value.category === "lunch";
+      });
+
+      priceTag.innerHTML = '';
+
+      selectedData.forEach(element => {
+
+        priceTag.insertAdjacentHTML('beforeend', `
+        <div class="products">
+        <img class="prodImages" src="${element.image}">
+        <h3 class='headers'>${element.title}</h3>
+        <p class="price">${element.price}</p>
+        <p class="info">${element.description}</p>
+      </div>`);
+
+      });
+
+    });
+    // END FILTER FOR LUNCH
+
+
+    // START FILTER FOR LUNCH
+    dinner.addEventListener('click', function () {
+
+      let selectedData = products.filter(value => {
+        return value.category === "dinner";
+      });
+
+      priceTag.innerHTML = '';
+
+      selectedData.forEach(element => {
+
+        priceTag.insertAdjacentHTML('beforeend', `
+      <div class="products">
+      <img class="prodImages" src="${element.image}">
+      <h3 class='headers'>${element.title}</h3>
+      <p class="price">${element.price}</p>
+      <p class="info">${element.description}</p>
+    </div>`);
+
+      });
+
+    });
+    // END FILTER FOR LUNCH
+
+
+    // START FILTER FOR DESERTS
+    deserts.addEventListener('click', function () {
+
+      let selectedData = products.filter(value => {
+        return value.category === "deserts";
+      });
+
+      priceTag.innerHTML = '';
+
+      selectedData.forEach(element => {
+
+        priceTag.insertAdjacentHTML('beforeend', `
+        <div class="products">
+        <img class="prodImages" src="${element.image}">
+        <h3 class='headers'>${element.title}</h3>
+        <p class="price">${element.price}</p>
+        <p class="info">${element.description}</p>
+        </div>`);
+
+      });
+
+    });
+    // END FILTER FOR DESERTS
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</body>
+
+</html>
